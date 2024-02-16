@@ -4,18 +4,12 @@ namespace Modules\Address\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Address\Models\Address;
 
 class AddressDatabaseSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        Model::unguard();
-
-        // $this->call("OthersTableSeeder");
+        Address::factory()->count(25)->create();
     }
 }
