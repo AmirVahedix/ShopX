@@ -1,0 +1,32 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use Illuminate\Support\ServiceProvider;
+
+class $CLASS$ extends ServiceProvider
+{
+    protected string $moduleName = '$MODULE$';
+
+    public function boot()
+    {
+        $this->registerTranslations();
+        $this->registerViews();
+        $this->loadMigrationsFrom(module_path($this->moduleName, '$MIGRATIONS_PATH$'));
+    }
+
+    public function register()
+    {
+        $this->app->register(RouteServiceProvider::class);
+    }
+
+    public function registerViews()
+    {
+        $this->loadViewsFrom(module_path($this->moduleName, '$PATH_VIEWS$'), $this->moduleName);
+    }
+
+    public function registerTranslations()
+    {
+        $this->loadJsonTranslationsFrom(module_path($this->moduleName, '$PATH_LANG$'));
+    }
+}

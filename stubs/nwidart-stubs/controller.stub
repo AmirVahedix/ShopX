@@ -1,0 +1,39 @@
+<?php
+
+namespace $CLASS_NAMESPACE$;
+
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+
+class $CLASS$ extends Controller
+{
+    public function index()
+    {
+        return view('$STUDLY_NAME$::index');
+    }
+
+    public function create()
+    {
+        return view('$STUDLY_NAME$::create');
+    }
+
+    public function store(Request $request)
+    {
+        //
+    }
+
+    public function edit($id)
+    {
+        return view('$STUDLY_NAME$::edit');
+    }
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function destroy($id)
+    {
+        //
+    }
+}
