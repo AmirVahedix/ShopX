@@ -3,19 +3,12 @@
 namespace $NAMESPACE$;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
+use Modules\$NAME$\Models\$NAME$;
 
 class $NAME$ extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        Model::unguard();
-
-        // $this->call("OthersTableSeeder");
+        $NAME$::factory()->count(25)->create();
     }
 }
