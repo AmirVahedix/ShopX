@@ -207,10 +207,10 @@ return [
     */
 
     'composer' => [
-        'vendor' => 'nwidart',
+        'vendor' => 'amirvahedix',
         'author' => [
-            'name' => 'Nicolas Widart',
-            'email' => 'n.widart@gmail.com',
+            'name' => 'Amir Vahedi',
+            'email' => 'amirvahedix@gmail.com',
         ],
         'composer-output' => false,
     ],
