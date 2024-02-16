@@ -4,6 +4,7 @@ namespace Modules\Client\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Address\Models\Address;
 use Modules\Client\Database\factories\ClientFactory;
 
 class Client extends Model
@@ -21,5 +22,10 @@ class Client extends Model
     protected static function newFactory()
     {
         return ClientFactory::new();
+    }
+
+    public function addresses()
+    {
+        return $this->hasMany(Address::class);
     }
 }
