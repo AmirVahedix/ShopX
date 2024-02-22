@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->foreignId('category_id');
+            $table->foreignId('parent_id')->nullable();
             $table->float('order')->default(0);
             $table->timestamps();
         });
