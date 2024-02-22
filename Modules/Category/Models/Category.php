@@ -6,10 +6,12 @@ use App\Traits\HasOrder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Category\Database\factories\CategoryFactory;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Category extends Model
+class Category extends Model implements HasMedia
 {
-    use HasFactory, HasOrder;
+    use HasFactory, HasOrder, InteractsWithMedia;
 
     protected $fillable = [
         "title",
