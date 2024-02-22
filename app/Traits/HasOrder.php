@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-use App\Models\Scopes\OrderScope;
+use App\Scopes\OrderScope;
 use Modules\Category\Models\Category;
 
 trait HasOrder
