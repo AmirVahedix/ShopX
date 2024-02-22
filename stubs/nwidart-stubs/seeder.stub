@@ -3,12 +3,12 @@
 namespace $NAMESPACE$;
 
 use Illuminate\Database\Seeder;
-use Modules\$NAME$\Models\$NAME$;
+use Modules\$MODULE$\Models\$MODULE$;
 
 class $NAME$ extends Seeder
 {
     public function run()
     {
-        $NAME$::factory()->count(25)->create();
+        $MODULE$::factory()->count(25)->create();
     }
 }
