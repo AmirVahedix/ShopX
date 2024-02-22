@@ -10,8 +10,8 @@ class CategoryController extends Controller
     public function index()
     {
         return Category::query()
+            ->whereNull('parent_id')
             ->with('children')
-            ->orderByDesc('order')
             ->get();
     }
 }

@@ -2,18 +2,18 @@
 
 namespace Modules\Category\Models;
 
+use App\Traits\HasOrder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Category\Database\factories\CategoryFactory;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, HasOrder;
 
     protected $fillable = [
         "title",
         "parent_id",
-        "order",
     ];
 
     protected static function newFactory()
