@@ -12,7 +12,7 @@ trait HasOrder
         $this->fillable[] = 'order';
 
         static::creating(function ($instance) {
-            $instance->order = Category::query()->max('order') + 1 ?? 0;
+            $instance->order = static::max('order') + 1;
         });
 
         static::addGlobalScope(new OrderScope());

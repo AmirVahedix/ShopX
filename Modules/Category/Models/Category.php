@@ -11,7 +11,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Category extends Model implements HasMedia
 {
-    use HasFactory, HasOrder, InteractsWithMedia;
+    use HasFactory, InteractsWithMedia, HasOrder;
 
     protected $fillable = [
         "title",
