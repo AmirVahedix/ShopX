@@ -17,6 +17,7 @@ return new class extends Migration
                 ->nullOnDelete();
             $table->float('order')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
