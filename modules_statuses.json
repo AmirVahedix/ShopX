@@ -4,5 +4,6 @@
     "Category": true,
     "Product": true,
     "Attribute": true,
-    "Variant": true
+    "Variant": true,
+    "Comment": true
 }
