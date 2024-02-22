@@ -4,6 +4,7 @@ namespace Modules\Product\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\Attribute\Http\Resources\AttributeResource;
+use Modules\Variant\Http\Resources\VariantResource;
 
 class ProductResource extends JsonResource
 {
@@ -14,7 +15,8 @@ class ProductResource extends JsonResource
             "slug" => $this->slug,
             "model" => $this->model,
             "description" => $this->description,
-            "attributes" => AttributeResource::collection($this->attributes)
+            "attributes" => AttributeResource::collection($this->attributes),
+            "variants" => VariantResource::collection($this->variants)
         ];
     }
 }

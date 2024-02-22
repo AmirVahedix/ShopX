@@ -8,6 +8,6 @@ class ProductRepo
 {
     public static function paginate()
     {
-        return Product::with('attributes')->latest()->paginate(15);
+        return Product::with('attributes', 'variants')->latest()->paginate(15);
     }
 }
