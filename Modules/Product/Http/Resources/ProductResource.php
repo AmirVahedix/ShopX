@@ -3,6 +3,7 @@
 namespace Modules\Product\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Attribute\Http\Resources\AttributeResource;
 
 class ProductResource extends JsonResource
 {
@@ -15,6 +16,7 @@ class ProductResource extends JsonResource
             "description" => $this->description,
             "price" => $this->price,
             "old_price" => $this->old_price,
+            "attributes" => AttributeResource::collection($this->attributes)
         ];
     }
 }
