@@ -8,6 +8,7 @@ use Modules\Attribute\Database\Seeders\AttributeDatabaseSeeder;
 use Modules\Category\Database\Seeders\CategoryDatabaseSeeder;
 use Modules\Client\Database\Seeders\ClientDatabaseSeeder;
 use Modules\Product\Database\Seeders\ProductDatabaseSeeder;
+use Modules\Variant\Database\Seeders\VariantDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoryDatabaseSeeder::class);
         $this->call(ProductDatabaseSeeder::class);
         $this->call(AttributeDatabaseSeeder::class);
+        $this->call(VariantDatabaseSeeder::class);
     }
 }

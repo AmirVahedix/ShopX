@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Attribute\Models\Attribute;
 use Modules\Product\Database\factories\ProductFactory;
+use Modules\Variant\Models\Variant;
 
 class Product extends Model
 {
@@ -16,8 +17,6 @@ class Product extends Model
         "slug",
         "model",
         "description",
-        "price",
-        "old_price",
     ];
 
     protected static function newFactory()
@@ -28,5 +27,10 @@ class Product extends Model
     public function attributes()
     {
         return $this->hasMany(Attribute::class);
+    }
+
+    public function variants()
+    {
+        return $this->hasMany(Variant::class);
     }
 }

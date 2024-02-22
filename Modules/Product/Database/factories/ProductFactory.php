@@ -16,8 +16,6 @@ class ProductFactory extends Factory
             "slug" => $this->faker->slug,
             "model" => $this->faker->sentence,
             "description" => $this->faker->paragraph(10),
-            "price" => $this->faker->numberBetween(2000000, 200000000),
-            "old_price" => $this->faker->randomElement([null, $this->faker->numberBetween(2000000, 200000000)]),
         ];
     }
 }

@@ -14,8 +14,6 @@ class ProductResource extends JsonResource
             "slug" => $this->slug,
             "model" => $this->model,
             "description" => $this->description,
-            "price" => $this->price,
-            "old_price" => $this->old_price,
             "attributes" => AttributeResource::collection($this->attributes)
         ];
     }
