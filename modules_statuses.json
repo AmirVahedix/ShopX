@@ -6,5 +6,6 @@
     "Attribute": true,
     "Variant": true,
     "Comment": true,
-    "Order": true
+    "Order": true,
+    "Admin": true
 }
