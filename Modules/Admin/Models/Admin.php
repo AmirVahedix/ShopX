@@ -2,7 +2,6 @@
 
 namespace Modules\Admin\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\Admin\Database\factories\AdminFactory;

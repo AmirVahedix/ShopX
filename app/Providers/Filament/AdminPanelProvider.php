@@ -51,6 +51,7 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
-            ->authGuard('admin');
+            ->authGuard('admin')
+            ->authMiddleware(['auth:admin']);
     }
 }
