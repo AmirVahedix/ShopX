@@ -14,6 +14,7 @@ return new class extends Migration
             $table->foreignId('zone_id')->constrained();
             $table->foreignId('estate_id')->constrained();
             $table->text('address');
+            $table->string('postal_code');
             $table->timestamps();
         });
     }

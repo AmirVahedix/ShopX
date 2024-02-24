@@ -16,6 +16,7 @@ class Address extends Model
         "zone_id",
         "estate_id",
         "address",
+        "postal_code",
     ];
 
     protected static function newFactory()
