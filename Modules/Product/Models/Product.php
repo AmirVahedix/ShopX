@@ -36,4 +36,9 @@ class Product extends Model implements HasMedia
     {
         return $this->hasMany(Variant::class);
     }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Product::class);
+    }
 }

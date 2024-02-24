@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Category\Database\factories\CategoryFactory;
+use Modules\Product\Models\Product;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -37,5 +38,10 @@ class Category extends Model implements HasMedia
     public function children()
     {
         return $this->directChildren()->with('children');
+    }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
     }
 }
