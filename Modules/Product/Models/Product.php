@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Attribute\Models\Attribute;
+use Modules\Category\Models\Category;
 use Modules\Product\Database\factories\ProductFactory;
 use Modules\Variant\Models\Variant;
 use Spatie\MediaLibrary\HasMedia;
@@ -39,6 +40,6 @@ class Product extends Model implements HasMedia
 
     public function categories()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Category::class);
     }
 }

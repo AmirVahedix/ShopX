@@ -11,6 +11,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Category\Models\Category;
 use Modules\Product\Models\Product;
 
 class ProductResource extends Resource
@@ -24,9 +25,13 @@ class ProductResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title'),
-                Forms\Components\TextInput::make('slug'),
-                Forms\Components\TextInput::make('model')
-                    ->columnSpan(2),
+                Forms\Components\TextInput::make('slug')
+                    ->unique('products', 'slug', ignoreRecord: true),
+                Forms\Components\TextInput::make('model'),
+                Forms\Components\Select::make('categories')
+                    ->relationship('categories', 'title')
+                    ->multiple()
+                    ->searchable(),
                 Forms\Components\RichEditor::make('description')
                     ->columnSpan(2),
             ]);
