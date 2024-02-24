@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CategoryResource\Pages;
 use App\Filament\Resources\CategoryResource\RelationManagers;
+use Filament\Actions\Action;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -25,7 +26,11 @@ class CategoryResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')
                     ->required(),
-                Forms\Components\FileUpload::make('image')
+                Forms\Components\FileUpload::make('image'),
+                Forms\Components\Select::make('parent_id')
+                    ->relationship('parent', 'title')
+                    ->searchable()
+                    ->nullable()
             ]);
     }
 
@@ -35,10 +40,12 @@ class CategoryResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('products_count')
-                    ->counts('products')
+                    ->counts('products'),
+                Tables\Columns\TextColumn::make('parent.title'),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('parents_only')
+                    ->query(fn (Builder $query): Builder => $query->whereNull('parent_id'))
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -47,7 +54,8 @@ class CategoryResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('parent_id');
     }
 
     public static function getRelations(): array
@@ -64,10 +72,5 @@ class CategoryResource extends Resource
             'create' => Pages\CreateCategory::route('/create'),
             'edit' => Pages\EditCategory::route('/{record}/edit'),
         ];
-    }
-
-    public static function getEloquentQuery(): Builder
-    {
-        return parent::getEloquentQuery()->whereNull('parent_id');
     }
 }

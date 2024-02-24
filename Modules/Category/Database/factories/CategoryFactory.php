@@ -12,7 +12,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            "title" => $this->faker->sentence,
+            "title" => $this->faker->sentence(3),
             "parent_id" => Category::query()->inRandomOrder()->first() ?? null,
         ];
     }
