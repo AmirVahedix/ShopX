@@ -10,18 +10,26 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class AttributesRelationManager extends RelationManager
+class VariantsRelationManager extends RelationManager
 {
-    protected static string $relationship = 'attributes';
+    protected static string $relationship = 'variants';
 
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required(),
-                Forms\Components\TextInput::make('value')
+                Forms\Components\ColorPicker::make('color_hash')
+                    ->label('Color'),
+                Forms\Components\TextInput::make('color_name'),
+                Forms\Components\TextInput::make('warranty'),
+                Forms\Components\TextInput::make('price')
                     ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('old_price')
+                    ->numeric(),
+                Forms\Components\TextInput::make('stock')
+                    ->required()
+                    ->numeric()
             ]);
     }
 
@@ -30,8 +38,13 @@ class AttributesRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('id')
             ->columns([
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('value'),
+                Tables\Columns\ColorColumn::make('color_hash')
+                    ->label('Color'),
+                Tables\Columns\TextColumn::make('color_name'),
+                Tables\Columns\TextColumn::make('warranty'),
+                Tables\Columns\TextColumn::make('price'),
+                Tables\Columns\TextColumn::make('old_price'),
+                Tables\Columns\TextColumn::make('stock'),
             ])
             ->filters([
                 //
