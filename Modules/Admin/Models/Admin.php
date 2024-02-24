@@ -4,9 +4,10 @@ namespace Modules\Admin\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Modules\Admin\Database\factories\AdminFactory;
 
-class Admin extends Model
+class Admin extends Authenticatable
 {
     use HasFactory;
 
@@ -14,6 +15,7 @@ class Admin extends Model
         "name",
         "email",
         "password",
+        "remember_token"
     ];
 
     protected static function newFactory()
