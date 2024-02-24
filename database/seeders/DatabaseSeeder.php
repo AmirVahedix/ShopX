@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Modules\Address\Database\Seeders\AddressDatabaseSeeder;
+use Modules\Admin\Database\Seeders\AdminDatabaseSeeder;
 use Modules\Attribute\Database\Seeders\AttributeDatabaseSeeder;
 use Modules\Category\Database\Seeders\CategoryDatabaseSeeder;
 use Modules\Client\Database\Seeders\ClientDatabaseSeeder;
@@ -16,6 +17,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
+        $this->call(AdminDatabaseSeeder::class);
         $this->call(ClientDatabaseSeeder::class);
         $this->call(AddressDatabaseSeeder::class);
         $this->call(CategoryDatabaseSeeder::class);
