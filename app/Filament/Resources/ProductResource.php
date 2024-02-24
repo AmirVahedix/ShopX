@@ -42,7 +42,9 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('model')
+                Tables\Columns\TextColumn::make('variants_sum_stock')
+                    ->sum('variants', 'stock')
+                    ->label('Total Stock')
             ])
             ->defaultSort('created_at')
             ->filters([
