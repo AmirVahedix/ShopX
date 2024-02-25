@@ -13,6 +13,7 @@ return new class extends Migration
             $table->id();
             $table->string('sku')->unique();
             $table->foreignId('client_id')->constrained();
+            $table->foreignId('address_id')->constrained();
             $table->enum('status', Order::statuses)->default(Order::STATUS_WAITING);
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();

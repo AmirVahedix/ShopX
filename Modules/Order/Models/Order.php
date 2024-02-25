@@ -27,6 +27,7 @@ class Order extends Model
     protected $fillable = [
         "sku",
         "client_id",
+        "address_id",
         "status",
         "paid_at",
     ];
