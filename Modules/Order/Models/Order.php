@@ -4,6 +4,7 @@ namespace Modules\Order\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Address\Models\Address;
 use Modules\Client\Models\Client;
 use Modules\Order\Database\factories\OrderFactory;
 
@@ -40,6 +41,11 @@ class Order extends Model
     public function client()
     {
         return $this->belongsTo(Client::class);
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
     }
 
     public function items()

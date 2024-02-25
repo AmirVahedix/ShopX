@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Address\Models\Address;
 use Modules\Client\Database\factories\ClientFactory;
+use Modules\Order\Models\Order;
 
 class Client extends Model
 {
@@ -27,5 +28,10 @@ class Client extends Model
     public function addresses()
     {
         return $this->hasMany(Address::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Address\Database\factories\AddressFactory;
 use Modules\Client\Models\Client;
+use Modules\Order\Models\Order;
 
 class Address extends Model
 {
@@ -37,5 +38,10 @@ class Address extends Model
     public function estate()
     {
         return $this->belongsTo(Estate::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }
