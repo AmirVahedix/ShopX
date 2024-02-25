@@ -50,7 +50,7 @@ class ClientResource extends Resource
                 Tables\Columns\TextColumn::make('phone')
                     ->searchable(),
                 Tables\Columns\BooleanColumn::make('phone_verified_at')
-                ->label('Verified?')
+                    ->label('Is Verified')
             ])
             ->filters([
                 //

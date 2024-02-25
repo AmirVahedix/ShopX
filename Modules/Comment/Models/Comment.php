@@ -36,4 +36,11 @@ class Comment extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    public function markAsApproved()
+    {
+        $this->update([
+            'approved_at' => now()
+        ]);
+    }
 }
