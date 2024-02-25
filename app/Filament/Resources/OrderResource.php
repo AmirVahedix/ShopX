@@ -52,10 +52,19 @@ class OrderResource extends Resource
                         Order::STATUS_DELIVERED => 'success'
                     }),
                 Tables\Columns\TextColumn::make('paid_at')
-                    ->dateTime(),
+                    ->formatStateUsing(function (string $state): string {
+                          return jdate($state)->format('d F');
+                    })
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('status')
+                    ->options([
+                        Order::STATUS_CANCELED => Order::STATUS_CANCELED,
+                        Order::STATUS_WAITING => Order::STATUS_WAITING,
+                        Order::STATUS_PENDING => Order::STATUS_PENDING,
+                        Order::STATUS_SHIPPING => Order::STATUS_SHIPPING,
+                        Order::STATUS_DELIVERED => Order::STATUS_DELIVERED
+                    ])
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -64,13 +73,13 @@ class OrderResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('paid_at', 'desc');
     }
 
     public static function getRelations(): array
     {
         return [
-            //
         ];
     }
 
