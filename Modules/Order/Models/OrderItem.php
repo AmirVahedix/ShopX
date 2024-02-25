@@ -17,7 +17,7 @@ class OrderItem extends Model
         "product_id",
         "variant_id",
         "qty",
-        "price",
+        "fee",
     ];
 
     protected static function newFactory()

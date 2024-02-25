@@ -19,7 +19,7 @@ class OrderItemFactory extends Factory
             "product_id" => Product::query()->inRandomOrder()->first(),
             "variant_id" => Variant::query()->inRandomOrder()->first(),
             "qty" => $this->faker->numberBetween(1, 5),
-            "price" => $this->faker->numberBetween(10000000, 200000000),
+            "fee" => $this->faker->numberBetween(10000000, 200000000),
         ];
     }
 }

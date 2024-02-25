@@ -14,7 +14,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained();
             $table->foreignId('variant_id')->constrained()->cascadeOnDelete();
             $table->integer('qty')->default(1);
-            $table->string('price');
+            $table->string('fee');
             $table->timestamps();
             $table->softDeletes();
         });

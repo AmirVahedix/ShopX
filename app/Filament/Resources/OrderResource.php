@@ -10,6 +10,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Modules\Order\Models\Order;
 
@@ -33,6 +34,10 @@ class OrderResource extends Resource
                         Order::STATUS_SHIPPING => Order::STATUS_SHIPPING,
                         Order::STATUS_DELIVERED => Order::STATUS_DELIVERED
                     ]),
+                Forms\Components\TextInput::make('created_at')
+                    ->readOnly()
+                    ->formatStateUsing(fn (string $state): string => jdate($state)->format('Y/m/d'))
+                    ->label('Order Date')
             ]);
     }
 
@@ -52,9 +57,7 @@ class OrderResource extends Resource
                         Order::STATUS_DELIVERED => 'success'
                     }),
                 Tables\Columns\TextColumn::make('paid_at')
-                    ->formatStateUsing(function (string $state): string {
-                          return jdate($state)->format('d F');
-                    })
+                    ->formatStateUsing(fn (string $state): string => jdate($state)->format('d F'))
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
@@ -66,20 +69,16 @@ class OrderResource extends Resource
                         Order::STATUS_DELIVERED => Order::STATUS_DELIVERED
                     ])
             ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ])
-            ->defaultSort('paid_at', 'desc');
+            ->actions([])
+            ->bulkActions([])
+            ->defaultSort('paid_at', 'desc')
+            ->modifyQueryUsing(fn (Builder $query) => $query->whereNotNull('paid_at'));
     }
 
     public static function getRelations(): array
     {
         return [
+            RelationManagers\ItemsRelationManager::class,
         ];
     }
 
@@ -90,5 +89,15 @@ class OrderResource extends Resource
             'create' => Pages\CreateOrder::route('/create'),
             'edit' => Pages\EditOrder::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return false;
     }
 }
