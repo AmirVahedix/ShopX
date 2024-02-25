@@ -79,7 +79,8 @@ class OrderResource extends Resource
     {
         return [
             RelationManagers\ItemsRelationManager::class,
-            RelationManagers\ClientRelationManager::class
+            RelationManagers\ClientRelationManager::class,
+            RelationManagers\AddressRelationManager::class
         ];
     }
 

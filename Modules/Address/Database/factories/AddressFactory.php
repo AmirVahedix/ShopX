@@ -19,6 +19,7 @@ class AddressFactory extends Factory
             "zone_id" => Zone::query()->inRandomOrder()->first(),
             "estate_id" => Estate::query()->inRandomOrder()->first(),
             "address" => $this->faker->address,
+            "postal_code" => $this->faker->numberBetween(1000000000, 99999999999),
         ];
     }
 }
