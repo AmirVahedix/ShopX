@@ -26,11 +26,11 @@ class CategoryResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')
                     ->required(),
-                Forms\Components\FileUpload::make('image'),
                 Forms\Components\Select::make('parent_id')
                     ->relationship('parent', 'title')
                     ->searchable()
-                    ->nullable()
+                    ->nullable(),
+                Forms\Components\SpatieMediaLibraryFileUpload::make('thumbnail'),
             ]);
     }
 
@@ -38,6 +38,7 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('thumbnail'),
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('products_count')
                     ->counts('products'),
