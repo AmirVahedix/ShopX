@@ -39,6 +39,11 @@ class ProductResource extends Resource
                     ->label('Brand'),
                 Forms\Components\RichEditor::make('description')
                     ->columnSpan(2),
+                Forms\Components\SpatieMediaLibraryFileUpload::make('thumbnail')
+                    ->collection('thumbnail'),
+                Forms\Components\SpatieMediaLibraryFileUpload::make('gallery')
+                    ->collection('gallery')
+                    ->multiple(),
             ]);
     }
 
@@ -46,6 +51,8 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('thumbnail')
+                    ->collection('thumbnail'),
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('brand.title'),
                 Tables\Columns\TextColumn::make('variants_sum_stock')
