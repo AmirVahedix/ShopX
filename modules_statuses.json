@@ -7,5 +7,6 @@
     "Variant": true,
     "Comment": true,
     "Order": true,
-    "Admin": true
+    "Admin": true,
+    "Brand": true
 }

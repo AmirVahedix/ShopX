@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Modules\Address\Database\Seeders\AddressDatabaseSeeder;
 use Modules\Admin\Database\Seeders\AdminDatabaseSeeder;
 use Modules\Attribute\Database\Seeders\AttributeDatabaseSeeder;
+use Modules\Brand\Database\Seeders\BrandDatabaseSeeder;
 use Modules\Category\Database\Seeders\CategoryDatabaseSeeder;
 use Modules\Client\Database\Seeders\ClientDatabaseSeeder;
 use Modules\Comment\Database\Seeders\CommentDatabaseSeeder;
@@ -26,5 +27,6 @@ class DatabaseSeeder extends Seeder
         $this->call(VariantDatabaseSeeder::class);
         $this->call(CommentDatabaseSeeder::class);
         $this->call(OrderDatabaseSeeder::class);
+        $this->call(BrandDatabaseSeeder::class);
     }
 }
