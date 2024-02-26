@@ -8,5 +8,6 @@
     "Comment": true,
     "Order": true,
     "Admin": true,
-    "Brand": true
+    "Brand": true,
+    "Article": true
 }
