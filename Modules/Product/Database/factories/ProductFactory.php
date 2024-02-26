@@ -3,6 +3,7 @@
 namespace Modules\Product\Database\factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Brand\Models\Brand;
 use \Modules\Product\Models\Product;
 
 class ProductFactory extends Factory
@@ -16,6 +17,7 @@ class ProductFactory extends Factory
             "slug" => $this->faker->slug,
             "model" => $this->faker->sentence,
             "description" => $this->faker->paragraph(10),
+            "brand_id" => Brand::query()->inRandomOrder()->first()
         ];
     }
 }

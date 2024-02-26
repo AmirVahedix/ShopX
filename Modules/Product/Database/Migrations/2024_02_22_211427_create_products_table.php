@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('model');
             $table->text('description')->nullable();
+            $table->foreignId('brand_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -22,11 +22,11 @@ class DatabaseSeeder extends Seeder
         $this->call(ClientDatabaseSeeder::class);
         $this->call(AddressDatabaseSeeder::class);
         $this->call(CategoryDatabaseSeeder::class);
+        $this->call(BrandDatabaseSeeder::class);
         $this->call(ProductDatabaseSeeder::class);
         $this->call(AttributeDatabaseSeeder::class);
         $this->call(VariantDatabaseSeeder::class);
         $this->call(CommentDatabaseSeeder::class);
         $this->call(OrderDatabaseSeeder::class);
-        $this->call(BrandDatabaseSeeder::class);
     }
 }

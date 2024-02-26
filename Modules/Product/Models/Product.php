@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Attribute\Models\Attribute;
+use Modules\Brand\Models\Brand;
 use Modules\Category\Models\Category;
 use Modules\Product\Database\factories\ProductFactory;
 use Modules\Variant\Models\Variant;
@@ -21,6 +22,7 @@ class Product extends Model implements HasMedia
         "slug",
         "model",
         "description",
+        "brand_id"
     ];
 
     protected static function newFactory()
@@ -41,5 +43,10 @@ class Product extends Model implements HasMedia
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsToMany(Brand::class);
     }
 }
