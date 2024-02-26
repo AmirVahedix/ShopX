@@ -11,6 +11,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Modules\Brand\Models\Brand;
 use Modules\Category\Models\Category;
 use Modules\Product\Models\Product;
 
@@ -32,6 +33,10 @@ class ProductResource extends Resource
                     ->relationship('categories', 'title')
                     ->multiple()
                     ->searchable(),
+                Forms\Components\Select::make('brand_id')
+                    ->options(Brand::query()->pluck('title', 'id'))
+                    ->searchable()
+                    ->label('Brand'),
                 Forms\Components\RichEditor::make('description')
                     ->columnSpan(2),
             ]);
@@ -42,6 +47,7 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\TextColumn::make('brand.title'),
                 Tables\Columns\TextColumn::make('variants_sum_stock')
                     ->sum('variants', 'stock')
                     ->label('Total Stock')
@@ -64,7 +70,7 @@ class ProductResource extends Resource
     {
         return [
             RelationManagers\AttributesRelationManager::class,
-            RelationManagers\VariantsRelationManager::class
+            RelationManagers\VariantsRelationManager::class,
         ];
     }
 
