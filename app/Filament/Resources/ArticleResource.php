@@ -23,7 +23,17 @@ class ArticleResource extends Resource
     {
         return $form
             ->schema([
-
+                Forms\Components\TextInput::make('title'),
+                Forms\Components\TextInput::make('slug'),
+                Forms\Components\RichEditor::make('body')
+                    ->columnSpan(2),
+                Forms\Components\TextInput::make('meta_title'),
+                Forms\Components\Textarea::make('meta_description')
+                    ->rows(3),
+                Forms\Components\DatePicker::make('published_at')
+                    ->default(now())
+                    ->label('Publish Date'),
+                Forms\Components\SpatieMediaLibraryFileUpload::make('thumbnail'),
             ]);
     }
 
