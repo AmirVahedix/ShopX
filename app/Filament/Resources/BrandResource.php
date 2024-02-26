@@ -39,7 +39,9 @@ class BrandResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')
+                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\TextColumn::make('products_count')
+                    ->counts('products')
             ])
             ->filters([
                 //
