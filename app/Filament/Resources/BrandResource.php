@@ -5,6 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\BrandResource\Pages;
 use App\Filament\Resources\BrandResource\RelationManagers;
 use Filament\Forms;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -23,10 +26,12 @@ class BrandResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
+                TextInput::make('title'),
+                SpatieMediaLibraryFileUpload::make('logo'),
+                RichEditor::make('description')
                     ->columnSpan(2),
-                Forms\Components\RichEditor::make('description')
-                    ->columnSpan(2)
+                Textinput::make('order')
+                    ->numeric()
             ]);
     }
 
@@ -46,7 +51,8 @@ class BrandResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('order', 'desc');
     }
 
     public static function getRelations(): array
