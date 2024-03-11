@@ -13,6 +13,7 @@ use Modules\Client\Database\Seeders\ClientDatabaseSeeder;
 use Modules\Comment\Database\Seeders\CommentDatabaseSeeder;
 use Modules\Order\Database\Seeders\OrderDatabaseSeeder;
 use Modules\Product\Database\Seeders\ProductDatabaseSeeder;
+use Modules\Slider\Database\Seeders\SliderDatabaseSeeder;
 use Modules\Variant\Database\Seeders\VariantDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -30,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CommentDatabaseSeeder::class);
         $this->call(OrderDatabaseSeeder::class);
         $this->call(ArticleDatabaseSeeder::class);
+        $this->call(SliderDatabaseSeeder::class);
     }
 }

@@ -9,5 +9,6 @@
     "Order": true,
     "Admin": true,
     "Brand": true,
-    "Article": true
+    "Article": true,
+    "Slider": true
 }
