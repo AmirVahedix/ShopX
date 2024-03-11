@@ -14,6 +14,8 @@ class ProductResource extends JsonResource
             "title" => $this->title,
             "slug" => $this->slug,
             "model" => $this->model,
+            "price" => $this->price,
+            "old_price" => $this->old_price,
             "description" => $this->description,
             "attributes" => AttributeResource::collection($this->attributes),
             "variants" => VariantResource::collection($this->variants)

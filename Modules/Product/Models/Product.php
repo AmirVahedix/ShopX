@@ -2,6 +2,7 @@
 
 namespace Modules\Product\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute as AttributeCast;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -27,6 +28,11 @@ class Product extends Model implements HasMedia
         "is_best_seller",
     ];
 
+    protected $appends = [
+        'price',
+        'old_price'
+    ];
+
     protected static function newFactory()
     {
         return ProductFactory::new();
@@ -50,5 +56,19 @@ class Product extends Model implements HasMedia
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function price(): AttributeCast
+    {
+        return AttributeCast::get(function () {
+            return $this->variants()->min('price');
+        });
+    }
+
+    public function oldPrice(): AttributeCast
+    {
+        return AttributeCast::get(function () {
+            return $this->variants()->max('old_price');
+        });
     }
 }
