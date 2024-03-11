@@ -13,6 +13,7 @@ class CategoryFactory extends Factory
     {
         return [
             "title" => $this->faker->sentence(3),
+            "slug" => $this->faker->slug,
             "parent_id" => Category::query()->inRandomOrder()->first() ?? null,
         ];
     }

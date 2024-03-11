@@ -26,6 +26,9 @@ class CategoryResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')
                     ->required(),
+                Forms\Components\TextInput::make('slug')
+                    ->required()
+                    ->unique(ignoreRecord: true),
                 Forms\Components\Select::make('parent_id')
                     ->relationship('parent', 'title')
                     ->searchable()
