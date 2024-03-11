@@ -17,7 +17,6 @@ class CategoryController extends Controller
 
     public function show($slug)
     {
-        $category = CategoryRepo::findBySlug($slug);
-        return CategoryProductResource::make($category);
+        return CategoryProductResource::make(CategoryRepo::findBySlug($slug));
     }
 }

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Attribute\Models\Attribute;
 use Modules\Brand\Models\Brand;
 use Modules\Category\Models\Category;
+use Modules\Comment\Models\Comment;
 use Modules\Product\Database\factories\ProductFactory;
 use Modules\Variant\Models\Variant;
 use Spatie\MediaLibrary\HasMedia;
@@ -51,6 +52,11 @@ class Product extends Model implements HasMedia
     public function categories()
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
     public function brand()

@@ -8,7 +8,7 @@ class CategoryRepo
 {
     public static function findBySlug(string $slug)
     {
-        return Category::with('products')
+        return Category::with('products', 'products.attributes', 'products.variants')
             ->where('slug', $slug)
             ->first();
     }

@@ -2,6 +2,7 @@
 
 namespace Modules\Comment\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Client\Models\Client;
@@ -42,5 +43,10 @@ class Comment extends Model
         $this->update([
             'approved_at' => now()
         ]);
+    }
+
+    public function scopeApproved(Builder $query): void
+    {
+        $query->whereNotNull('approved_at');
     }
 }

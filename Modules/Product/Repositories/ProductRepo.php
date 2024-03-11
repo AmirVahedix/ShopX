@@ -26,4 +26,11 @@ class ProductRepo
             ->latest()
             ->get();
     }
+
+    public static function findBySlug(string $slug)
+    {
+        return Product::with('attributes', 'variants', 'brand', 'comments')
+            ->where('slug', $slug)
+            ->first();
+    }
 }
