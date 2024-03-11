@@ -17,6 +17,7 @@ class Brand extends Model implements HasMedia
         "title",
         "description",
         "order",
+        "is_featuring",
     ];
 
     protected static function newFactory()

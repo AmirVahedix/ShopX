@@ -64,11 +64,9 @@ class ProductResource extends Resource
                     ->label('Total Stock'),
                 Tables\Columns\IconColumn::make('is_special_offer')
                     ->boolean()
-                    ->default(0)
                     ->label('Special Offer'),
                 Tables\Columns\IconColumn::make('is_best_seller')
                     ->boolean()
-                    ->default(0)
                     ->label('Best Seller'),
             ])
             ->defaultSort('created_at')

@@ -30,6 +30,8 @@ class BrandResource extends Resource
                 SpatieMediaLibraryFileUpload::make('logo'),
                 RichEditor::make('description')
                     ->columnSpan(2),
+                Forms\Components\Checkbox::make('is_featuring')
+                    ->label('Featuring'),
                 Textinput::make('order')
                     ->numeric()
             ]);
@@ -42,7 +44,10 @@ class BrandResource extends Resource
                 Tables\Columns\SpatieMediaLibraryImageColumn::make(''),
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('products_count')
-                    ->counts('products')
+                    ->counts('products'),
+                Tables\Columns\IconColumn::make('is_featuring')
+                    ->boolean()
+                    ->label('Featuring'),
             ])
             ->filters([
                 //

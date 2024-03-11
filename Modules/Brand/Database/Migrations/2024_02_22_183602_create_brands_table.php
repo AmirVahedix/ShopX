@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->float('order')->default(1);
+            $table->boolean('is_featuring')->default(false);
             $table->timestamps();
         });
     }

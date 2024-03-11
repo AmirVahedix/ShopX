@@ -14,6 +14,7 @@ class BrandFactory extends Factory
         return [
             "title" => $this->faker->sentence(3),
             "description" => $this->faker->paragraph(6),
+            "is_featuring" => $this->faker->boolean
         ];
     }
 }
