@@ -5,6 +5,7 @@ namespace Modules\Product\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\Attribute\Http\Resources\AttributeResource;
+use Modules\Brand\Http\Resources\BrandResource;
 use Modules\Comment\Http\Resource\CommentResource;
 use Modules\Variant\Http\Resources\VariantResource;
 
@@ -22,7 +23,7 @@ class ProductCommentResource extends JsonResource
             "attributes" => AttributeResource::collection($this->attributes),
             "variants" => VariantResource::collection($this->variants),
             "comments" => CommentResource::collection($this->comments()->approved()->get()),
-            "brand" => $this->brand
+            "brand" => BrandResource::make($this->brand)
         ];
     }
 }
