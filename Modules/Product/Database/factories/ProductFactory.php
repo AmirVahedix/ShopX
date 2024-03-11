@@ -17,7 +17,9 @@ class ProductFactory extends Factory
             "slug" => $this->faker->slug,
             "model" => $this->faker->sentence,
             "description" => $this->faker->paragraph(10),
-            "brand_id" => Brand::query()->inRandomOrder()->first()
+            "brand_id" => Brand::query()->inRandomOrder()->first(),
+            "is_special_offer" => $this->faker->boolean,
+            "is_best_seller" => $this->faker->boolean,
         ];
     }
 }
