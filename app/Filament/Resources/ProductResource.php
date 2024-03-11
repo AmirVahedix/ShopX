@@ -33,6 +33,10 @@ class ProductResource extends Resource
                     ->relationship('categories', 'title')
                     ->multiple()
                     ->searchable(),
+                Forms\Components\Checkbox::make('is_special_offer')
+                    ->label('Special Offer'),
+                Forms\Components\Checkbox::make('is_best_seller')
+                    ->label('Best Seller'),
                 Forms\Components\Select::make('brand_id')
                     ->options(Brand::query()->pluck('title', 'id'))
                     ->searchable()
@@ -54,10 +58,18 @@ class ProductResource extends Resource
                 Tables\Columns\SpatieMediaLibraryImageColumn::make('thumbnail')
                     ->collection('thumbnail'),
                 Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('brand.title'),
+//                Tables\Columns\TextColumn::make('brand.title'),
                 Tables\Columns\TextColumn::make('variants_sum_stock')
                     ->sum('variants', 'stock')
-                    ->label('Total Stock')
+                    ->label('Total Stock'),
+                Tables\Columns\IconColumn::make('is_special_offer')
+                    ->boolean()
+                    ->default(0)
+                    ->label('Special Offer'),
+                Tables\Columns\IconColumn::make('is_best_seller')
+                    ->boolean()
+                    ->default(0)
+                    ->label('Best Seller'),
             ])
             ->defaultSort('created_at')
             ->filters([

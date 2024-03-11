@@ -22,7 +22,9 @@ class Product extends Model implements HasMedia
         "slug",
         "model",
         "description",
-        "brand_id"
+        "brand_id",
+        "is_special_offer",
+        "is_best_seller",
     ];
 
     protected static function newFactory()

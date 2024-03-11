@@ -15,6 +15,8 @@ return new class extends Migration
             $table->string('model');
             $table->text('description')->nullable();
             $table->foreignId('brand_id')->constrained();
+            $table->boolean('is_special_offer')->default(false);
+            $table->boolean('is_best_seller')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
