@@ -48,7 +48,7 @@ class ArticleResource extends Resource
                     ->label('Publish Date')
             ])
             ->filters([
-                //
+
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
