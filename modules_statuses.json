@@ -10,5 +10,6 @@
     "Admin": true,
     "Brand": true,
     "Article": true,
-    "Slider": true
+    "Slider": true,
+    "Bookmark": true
 }
