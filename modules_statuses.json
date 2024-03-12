@@ -11,5 +11,6 @@
     "Brand": true,
     "Article": true,
     "Slider": true,
-    "Bookmark": true
+    "Bookmark": true,
+    "Auth": true
 }
