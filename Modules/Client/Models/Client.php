@@ -4,14 +4,16 @@ namespace Modules\Client\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 use Modules\Address\Models\Address;
 use Modules\Bookmark\Models\Bookmark;
 use Modules\Client\Database\factories\ClientFactory;
 use Modules\Order\Models\Order;
 
-class Client extends Model
+class Client extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, HasApiTokens;
 
     protected $fillable = [
         "name",
@@ -39,5 +41,11 @@ class Client extends Model
     public function bookmarks()
     {
         return $this->hasMany(Bookmark::class);
+    }
+
+    public function generateAuthToken(): string
+    {
+        $this->tokens()->delete();
+        return $this->createToken('auth')->plainTextToken;
     }
 }
