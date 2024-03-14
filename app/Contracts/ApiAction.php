@@ -4,5 +4,5 @@ namespace App\Contracts;
 
 interface ApiAction
 {
-    public function execute(): array;
+    public function execute();
 }

@@ -2,15 +2,24 @@
 
 namespace Modules\Category\Repositories;
 
+use App\Exceptions\RecordNotFoundException;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Category\Models\Category;
 
 class CategoryRepo
 {
-    public static function findBySlug(string $slug)
+    /**
+     * @throws RecordNotFoundException
+     */
+    public static function findBySlug(string $slug): Model
     {
-        return Category::with('products', 'products.attributes', 'products.variants')
+        $category = Category::with('products', 'products.attributes', 'products.variants')
             ->where('slug', $slug)
             ->first();
+
+        if (!$category) throw new RecordNotFoundException();
+
+        return $category;
     }
 
     public static function all()

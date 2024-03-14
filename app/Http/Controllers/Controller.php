@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Contracts\Action;
 use App\Contracts\ApiAction;
 use Exception;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
@@ -23,13 +21,16 @@ class Controller extends BaseController
         ], $this->getExceptionCode($exception));
     }
 
-    public function executeApiAction(ApiAction $action): JsonResponse
+    public function executeApiAction(ApiAction $action)
     {
         try {
-            return response()->json([
-                'status' => 'ok',
-                ...$action->execute(),
-            ]);
+            $result = $action->execute();
+            return is_array($result)
+                ? response()->json([
+                    'status' => 'ok',
+                    ...$action->execute(),
+                ])
+                : $result;
         } catch (Exception $e) {
             return $this->exception($e);
         }
