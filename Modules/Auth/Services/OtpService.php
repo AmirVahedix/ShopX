@@ -21,7 +21,9 @@ class OtpService
 
     public static function resend($phone): void
     {
-        self::clear();
+        $client = ClientRepo::findByPhone($phone);
+
+        self::clear($client);
 
         self::send($phone);
     }
@@ -30,7 +32,7 @@ class OtpService
     {
         if (!$client = ClientRepo::findByPhone($phone)) return false;
         if (!$client_otp = self::findOtp($client)) return false;
-        if (!$client_otp->otp == $otp) return false;
+        if ($client_otp->otp !== $otp) return false;
 
         self::clear($client);
         $client->markAsVerified();
@@ -56,6 +58,8 @@ class OtpService
         $otp = Otp::query()->where([
             'client_id' => $client->id
         ])->first();
+
+        if (!$otp) return null;
 
         if (Carbon::parse($otp->expires_at)->isPast()) return null;
 

@@ -2,19 +2,22 @@
 
 namespace Modules\Client\Actions;
 
+use App\Contracts\ApiAction;
+use Modules\Auth\Services\OtpService;
 use Modules\Client\Repositories\ClientRepo;
 
-class AuthAction
+class AuthAction implements ApiAction
 {
-    public function execute()
+    public function execute(): array
     {
         $phone = request('phone');
-        $client = ClientRepo::findOrCreate($phone);
 
-        // Send SMS
+        ClientRepo::findOrCreate($phone);
 
-        return response()->json([
-            'message' => 'otp sent successfully'
-        ]);
+        OtpService::send($phone);
+
+        return [
+            'message' => 'otp sent'
+        ];
     }
 }
