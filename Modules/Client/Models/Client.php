@@ -48,4 +48,11 @@ class Client extends Authenticatable
         $this->tokens()->delete();
         return $this->createToken('auth')->plainTextToken;
     }
+
+    public function markAsVerified()
+    {
+        $this->update([
+            'phone_verified_at' => now()
+        ]);
+    }
 }

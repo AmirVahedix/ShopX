@@ -13,4 +13,11 @@ class ClientRepo
             'phone' => $phone
         ]);
     }
+
+    public static function findByPhone(string $phone): Model | null
+    {
+        return Client::query()
+            ->where([ 'phone' => $phone ])
+            ->first();
+    }
 }
