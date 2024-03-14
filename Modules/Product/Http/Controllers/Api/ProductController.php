@@ -3,6 +3,7 @@
 namespace Modules\Product\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Modules\Product\Actions\ShowProductAction;
 use Modules\Product\Http\Resources\ProductCommentResource;
 use Modules\Product\Http\Resources\ProductResource;
 use Modules\Product\Models\Product;
@@ -25,8 +26,8 @@ class ProductController extends Controller
         return ProductResource::collection(ProductRepo::bestSellers());
     }
 
-    public function show($slug)
+    public function show($slug, ShowProductAction $action)
     {
-        return ProductCommentResource::make(ProductRepo::findBySlug($slug));
+        return $this->executeApiAction($action);
     }
 }

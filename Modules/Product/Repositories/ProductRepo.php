@@ -2,6 +2,8 @@
 
 namespace Modules\Product\Repositories;
 
+use App\Exceptions\RecordNotFoundException;
+use Illuminate\Database\Eloquent\Model;
 use Modules\Product\Models\Product;
 
 class ProductRepo
@@ -27,10 +29,14 @@ class ProductRepo
             ->get();
     }
 
-    public static function findBySlug(string $slug)
+    public static function findBySlug(string $slug): Model
     {
-        return Product::with('attributes', 'variants', 'brand', 'comments')
+        $product = Product::with('attributes', 'variants', 'brand', 'comments')
             ->where('slug', $slug)
             ->first();
+
+        if (!$product) throw new RecordNotFoundException();
+
+        return $product;
     }
 }
