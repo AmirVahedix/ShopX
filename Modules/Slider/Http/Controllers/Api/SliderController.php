@@ -5,15 +5,12 @@ namespace Modules\Slider\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Modules\Slider\Http\Resource\SliderResource;
 use Modules\Slider\Models\Slider;
+use Modules\Slider\Repositories\SliderRepo;
 
 class SliderController extends Controller
 {
     public function index()
     {
-        $data = Slider::with('media')
-            ->orderByDesc('order')
-            ->get();
-
-        return response()->json(SliderResource::collection($data));
+        return SliderResource::collection(SliderRepo::index());
     }
 }
