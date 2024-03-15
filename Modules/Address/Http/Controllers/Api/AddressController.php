@@ -4,6 +4,7 @@ namespace Modules\Address\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\UnauthorizedException;
+use Modules\Address\Actions\AddressDeleteAction;
 use Modules\Address\Actions\AddressIndexAction;
 use Modules\Address\Actions\AddressShowAction;
 use Modules\Address\Actions\AddressUpdateAction;
@@ -24,6 +25,11 @@ class AddressController extends Controller
     }
 
     public function update(AddressUpdateRequest $request, $id, AddressUpdateAction $action)
+    {
+        return $this->executeApiAction($action);
+    }
+
+    public function delete($id, AddressDeleteAction $action)
     {
         return $this->executeApiAction($action);
     }
