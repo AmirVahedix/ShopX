@@ -16,7 +16,8 @@ class AddressResource extends JsonResource
             'address' => $this->address,
             'postal_code' => $this->postal_code,
             'receiver_name' => $this->receiver_name,
-            'receiver_phone' => $this->receiver_phone
+            'receiver_phone' => $this->receiver_phone,
+            'is_default' => $this->is_default
         ];
     }
 }

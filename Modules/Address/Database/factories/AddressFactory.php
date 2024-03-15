@@ -23,6 +23,7 @@ class AddressFactory extends Factory
             "postal_code" => $this->faker->numberBetween(1000000000, 99999999999),
             "receiver_name" => $receiver_phone === null ? null : $this->faker->name,
             "receiver_phone" => $receiver_phone,
+            "is_default" => $this->faker->boolean
         ];
     }
 }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('postal_code');
             $table->string("receiver_name")->nullable();
             $table->string("receiver_phone")->nullable();
+            $table->boolean('is_default')->default(false);
             $table->timestamps();
         });
     }

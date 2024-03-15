@@ -11,4 +11,5 @@ Route::middleware('auth:sanctum')
         Route::get('/{id}', [AddressController::class, 'show']);
         Route::patch('/{id}', [AddressController::class, 'update']);
         Route::delete('/{id}', [AddressController::class, 'delete']);
+        Route::patch('/{id}/default', [AddressController::class, 'setAsDefault']);
     });

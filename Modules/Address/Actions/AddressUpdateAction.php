@@ -16,11 +16,7 @@ class AddressUpdateAction implements ApiAction
      */
     public function execute()
     {
-        $address = AddressRepo::findById(request('id'));
-
-        if ($address->client_id !== auth()->id()) {
-            throw new UnauthorizedException();
-        }
+        $address = AddressRepo::safeFind(request('id'));
 
         $address->update(
             request()->only('zone_id', 'estate_id', 'address', 'postal_code', 'receiver_name', 'receiver_phone')

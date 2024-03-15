@@ -20,6 +20,7 @@ class Address extends Model
         "postal_code",
         "receiver_name",
         "receiver_phone",
+        "is_default"
     ];
 
     protected static function newFactory()

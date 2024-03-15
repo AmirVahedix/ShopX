@@ -16,11 +16,7 @@ class AddressShowAction implements ApiAction
      */
     public function execute()
     {
-        $address = AddressRepo::findById(request('id'));
-
-        if ($address->client_id !== auth()->id()) {
-            throw new UnauthorizedException();
-        }
+        $address = AddressRepo::safeFind(request('id'));
 
         return AddressResource::make($address);
     }

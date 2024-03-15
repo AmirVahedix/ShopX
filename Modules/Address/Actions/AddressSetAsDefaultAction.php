@@ -5,9 +5,10 @@ namespace Modules\Address\Actions;
 use App\Contracts\ApiAction;
 use App\Exceptions\RecordNotFoundException;
 use App\Exceptions\UnauthorizedException;
+use Modules\Address\Models\Address;
 use Modules\Address\Repositories\AddressRepo;
 
-class AddressDeleteAction implements ApiAction
+class AddressSetAsDefaultAction implements ApiAction
 {
     /**
      * @throws RecordNotFoundException
@@ -17,10 +18,19 @@ class AddressDeleteAction implements ApiAction
     {
         $address = AddressRepo::safeFind(request('id'));
 
-        $address->delete();
+        $address->update([
+            'is_default' => true,
+        ]);
+
+        Address::query()
+            ->where('client_id', auth()->id())
+            ->whereNot('id', $address->id)
+            ->update([
+                'is_default' => false
+            ]);
 
         return [
-            'message' => 'address deleted successfully'
+            'message' => 'Address has been set as default'
         ];
     }
 }
