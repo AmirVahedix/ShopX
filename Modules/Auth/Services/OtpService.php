@@ -55,9 +55,10 @@ class OtpService
 
     private static function findOtp(Model $client): Model | null
     {
-        $otp = Otp::query()->where([
-            'client_id' => $client->id
-        ])->first();
+        $otp = Otp::query()
+            ->where([ 'client_id' => $client->id ])
+            ->orderByDesc('expires_at')
+            ->first();
 
         if (!$otp) return null;
 

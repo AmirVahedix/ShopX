@@ -28,7 +28,7 @@ class Controller extends BaseController
             return is_array($result)
                 ? response()->json([
                     'status' => 'ok',
-                    ...$action->execute(),
+                    ...$result,
                 ])
                 : $result;
         } catch (Exception $e) {
