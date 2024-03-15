@@ -8,4 +8,5 @@ Route::prefix('/profile/orders')
     ->middleware('auth:sanctum')
     ->group(function () {
         Route::get('/', [OrderController::class, 'index']);
+        Route::get('/{sku}', [OrderController::class, 'show']);
     });
