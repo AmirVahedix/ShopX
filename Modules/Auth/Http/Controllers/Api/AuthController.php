@@ -19,4 +19,13 @@ class AuthController extends Controller
     {
         return $this->executeApiAction($action);
     }
+
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+
+        return [
+            'message' => 'All tokens deleted'
+        ];
+    }
 }
