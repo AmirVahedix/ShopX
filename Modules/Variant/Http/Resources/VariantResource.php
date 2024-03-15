@@ -9,6 +9,7 @@ class VariantResource extends JsonResource
     public function toArray($request)
     {
         return [
+            "id" => $this->id,
             "color_name" => $this->color_name,
             "color_hash" => $this->color_hash,
             "warranty" => $this->warranty,
