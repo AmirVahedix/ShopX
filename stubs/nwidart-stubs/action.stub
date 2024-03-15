@@ -2,9 +2,9 @@
 
 namespace $NAMESPACE$;
 
-use App\Contracts\Action;
+use App\Contracts\ApiAction;
 
-class $CLASS$ implements Action
+class $CLASS$ implements ApiAction
 {
     public function execute()
     {

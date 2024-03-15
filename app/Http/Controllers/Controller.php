@@ -42,8 +42,8 @@ class Controller extends BaseController
      */
     public function getExceptionCode(Exception $exception): int
     {
-        return $exception->getCode() === 0
-            ? 500
-            : $exception->getCode();
+        return in_array($exception->getCode(), [200, 201, 302, 404, 403, 500])
+            ? $exception->getCode()
+            : 500;
     }
 }

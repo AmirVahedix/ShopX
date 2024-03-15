@@ -9,7 +9,9 @@ class UpdateProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required'],
+            'ssn' => ['required'],
+            'birth_date' => ['required'],
         ];
     }
 
