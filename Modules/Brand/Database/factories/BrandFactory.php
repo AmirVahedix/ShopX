@@ -13,6 +13,7 @@ class BrandFactory extends Factory
     {
         return [
             "title" => $this->faker->sentence(3),
+            "slug" => $this->faker->slug,
             "description" => $this->faker->paragraph(6),
             "is_featuring" => $this->faker->boolean
         ];

@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->text('description');
             $table->float('order')->default(1);
             $table->boolean('is_featuring')->default(false);

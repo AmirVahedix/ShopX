@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Modules\Article\Http\Resources\ArticleEssentialResource;
 use Modules\Article\Http\Resources\ArticleResource;
 use Modules\Article\Repositories\ArticleRepo;
+use Modules\Brand\Http\Resources\BrandEssentialResource;
 use Modules\Brand\Http\Resources\BrandResource;
 use Modules\Brand\Repositories\BrandRepo;
 use Modules\Category\Http\Resources\CategoryParentsResource;
@@ -32,7 +33,7 @@ class PageController extends Controller
 
         $data['best_sellers'] = ProductEssentialResource::collection(ProductRepo::bestSellers());
 
-        $data['brands'] = BrandResource::collection(BrandRepo::featuring());
+        $data['brands'] = BrandEssentialResource::collection(BrandRepo::featuring());
 
         $data['half_width_banners'] = [];
 
