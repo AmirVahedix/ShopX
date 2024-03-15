@@ -23,7 +23,7 @@ class VerifyAction implements ApiAction
 
         return [
             'message' => 'client verified',
-            'token' => $token
+            'accessToken' => $token
         ];
     }
 }

@@ -18,6 +18,8 @@ class Address extends Model
         "estate_id",
         "address",
         "postal_code",
+        "receiver_name",
+        "receiver_phone",
     ];
 
     protected static function newFactory()

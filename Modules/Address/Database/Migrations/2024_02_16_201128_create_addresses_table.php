@@ -15,6 +15,8 @@ return new class extends Migration
             $table->foreignId('estate_id')->constrained();
             $table->text('address');
             $table->string('postal_code');
+            $table->string("receiver_name")->nullable();
+            $table->string("receiver_phone")->nullable();
             $table->timestamps();
         });
     }

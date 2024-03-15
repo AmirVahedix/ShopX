@@ -4,6 +4,7 @@ namespace Modules\Client\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Address\Http\Resource\AddressResource;
 
 class ClientResource extends JsonResource
 {
@@ -12,9 +13,10 @@ class ClientResource extends JsonResource
         return [
             'name' => $this->name,
             'phone' => $this->phone,
-            'phone_verified_at' => $this->phone_verified_at,
+            'is_phone_verified' => !!$this->phone_verified_at,
             'ssn' => $this->ssn,
             'birth_date' => $this->birth_date,
+            'addresses' => AddressResource::collection($this->addresses)
         ];
     }
 }

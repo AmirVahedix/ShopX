@@ -14,17 +14,14 @@ class OtpService
     {
         $client = ClientRepo::findByPhone($phone);
 
-        self::store($client);
+        self::clear($client);
+        $otp = self::store($client);
 
-        SendOtpNotificationJob::dispatch();
+        SendOtpNotificationJob::dispatch($phone, $otp->otp);
     }
 
-    public static function resend($phone): void
+    public static function resend(string $phone): void
     {
-        $client = ClientRepo::findByPhone($phone);
-
-        self::clear($client);
-
         self::send($phone);
     }
 
@@ -42,11 +39,11 @@ class OtpService
 
     /**
      * @param Model $client
-     * @return void
+     * @return Model
      */
-    public static function store(Model $client): void
+    public static function store(Model $client): Model
     {
-        Otp::query()->create([
+        return Otp::query()->create([
             'client_id' => $client->id,
             'otp' => self::generateOtp(),
             'expires_at' => now()->addMinutes(2)
