@@ -15,6 +15,8 @@ class ClientFactory extends Factory
             "name" => $this->faker->name,
             "phone" => '09'.$this->faker->numberBetween(100000000, 9999999999),
             "phone_verified_at" => $this->faker->randomElement([null, now()]),
+            "email" => $this->faker->email,
+            "email_verified_at" => $this->faker->randomElement([null, now()]),
             "ssn" => $this->faker->numberBetween(3020000000, 3020999999),
             "birth_date" => $this->faker->date,
         ];

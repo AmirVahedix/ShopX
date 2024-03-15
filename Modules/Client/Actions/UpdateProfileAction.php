@@ -15,7 +15,7 @@ class UpdateProfileAction implements ApiAction
         ]);
 
         $client = auth()->user();
-        $client->update(request()->only('name', 'ssn', 'birth_date'));
+        $client->update(request()->only('name', 'ssn', 'birth_date', 'email'));
 
         return ClientResource::make($client);
     }

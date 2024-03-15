@@ -19,6 +19,8 @@ class Client extends Authenticatable
         "name",
         "phone",
         "phone_verified_at",
+        "email",
+        "email_verified_at",
         "ssn",
         "birth_date",
     ];
