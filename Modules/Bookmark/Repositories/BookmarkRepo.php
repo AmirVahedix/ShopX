@@ -8,6 +8,14 @@ use Modules\Bookmark\Models\Bookmark;
 
 class BookmarkRepo
 {
+    public static function find(string $product_id, string $client_id = null)
+    {
+        return Bookmark::query()
+            ->where('product_id', $product_id)
+            ->where('client_id', $client_id ?: auth()->id())
+            ->first();
+    }
+
     public static function findByClient(string $id): Collection
     {
         return Bookmark::with('product')
