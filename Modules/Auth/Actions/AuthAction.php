@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Client\Actions;
+namespace Modules\Auth\Actions;
 
 use App\Contracts\ApiAction;
 use Modules\Auth\Services\OtpService;
