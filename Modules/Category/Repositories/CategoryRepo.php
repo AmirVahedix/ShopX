@@ -29,4 +29,11 @@ class CategoryRepo
             ->with('children')
             ->get();
     }
+
+    public static function parents()
+    {
+        return Category::query()
+            ->whereNull('parent_id')
+            ->get();
+    }
 }
