@@ -16,6 +16,7 @@ return new class extends Migration
             $table->text('meta_title')->nullable();
             $table->text('meta_description')->nullable();
             $table->integer('views')->default(0);
+            $table->integer('reading_time')->default(5);
             $table->timestamp('published_at')->default(now());
             $table->timestamps();
             $table->softDeletes();

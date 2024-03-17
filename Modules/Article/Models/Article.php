@@ -20,6 +20,7 @@ class Article extends Model implements HasMedia
         "meta_description",
         "views",
         "published_at",
+        "reading_time"
     ];
 
     protected static function newFactory()

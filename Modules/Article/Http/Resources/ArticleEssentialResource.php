@@ -13,7 +13,7 @@ class ArticleEssentialResource extends JsonResource
             "title" => $this->title,
             "slug" => $this->slug,
             "image" => count($this->media) ? $this->media[0]->original_url : null,
-            "reading_time" => 2,
+            "reading_time" => $this->reading_time,
         ];
     }
 }

@@ -19,6 +19,7 @@ class ArticleFactory extends Factory
             "meta_description" => $this->faker->paragraph,
             "views" => $this->faker->numberBetween(0, 1000),
             "published_at" => $this->faker->dateTime,
+            "reading_time" => $this->faker->numberBetween(1, 10)
         ];
     }
 }

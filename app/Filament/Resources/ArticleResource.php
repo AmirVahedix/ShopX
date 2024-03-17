@@ -34,6 +34,9 @@ class ArticleResource extends Resource
                     ->default(now())
                     ->label('Publish Date'),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('thumbnail'),
+                Forms\Components\TextInput::make('reading_time')
+                    ->numeric()
+                    ->label('Reading Time (Minutes)'),
             ]);
     }
 
