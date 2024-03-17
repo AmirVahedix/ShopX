@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Modules\Article\Http\Resources\ArticleEssentialResource;
 use Modules\Article\Repositories\ArticleRepo;
+use Modules\Banner\Http\Resources\BannerResource;
+use Modules\Banner\Models\Banner;
+use Modules\Banner\Repositories\BannerRepo;
 use Modules\Brand\Http\Resources\BrandEssentialResource;
 use Modules\Brand\Repositories\BrandRepo;
 use Modules\Category\Http\Resources\CategoryParentsResource;
@@ -25,13 +28,13 @@ class PageController extends Controller
 
         $data['special_offers'] = ProductEssentialResource::collection(ProductRepo::specialOffers());
 
-        $data['full_width_banners'] = [];
+        $data['full_width_banners'] = BannerResource::collection(BannerRepo::getByType(Banner::TYPE_FULL_WIDTH));
 
         $data['best_sellers'] = ProductEssentialResource::collection(ProductRepo::bestSellers());
 
         $data['brands'] = BrandEssentialResource::collection(BrandRepo::featuring());
 
-        $data['half_width_banners'] = [];
+        $data['half_width_banners'] = BannerResource::collection(BannerRepo::getByType(Banner::TYPE_HALF_WIDTH));
 
         $data['articles'] = ArticleEssentialResource::collection(ArticleRepo::latest());
 

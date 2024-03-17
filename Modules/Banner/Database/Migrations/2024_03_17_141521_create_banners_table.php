@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('link');
             $table->enum('type', Banner::types);
+            $table->float('order')->default(1);
             $table->timestamps();
         });
     }

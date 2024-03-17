@@ -30,7 +30,9 @@ class BannerResource extends Resource
                     ->options([
                         Banner::TYPE_FULL_WIDTH => Banner::TYPE_FULL_WIDTH,
                         Banner::TYPE_HALF_WIDTH => Banner::TYPE_HALF_WIDTH
-                    ])
+                    ]),
+                Forms\Components\TextInput::make('order')
+                    ->numeric()
             ]);
     }
 
