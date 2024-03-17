@@ -7,6 +7,7 @@ use Modules\Address\Database\Seeders\AddressDatabaseSeeder;
 use Modules\Admin\Database\Seeders\AdminDatabaseSeeder;
 use Modules\Article\Database\Seeders\ArticleDatabaseSeeder;
 use Modules\Attribute\Database\Seeders\AttributeDatabaseSeeder;
+use Modules\Banner\Database\Seeders\BannerDatabaseSeeder;
 use Modules\Bookmark\Database\Seeders\BookmarkDatabaseSeeder;
 use Modules\Brand\Database\Seeders\BrandDatabaseSeeder;
 use Modules\Category\Database\Seeders\CategoryDatabaseSeeder;
@@ -34,5 +35,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ArticleDatabaseSeeder::class);
         $this->call(SliderDatabaseSeeder::class);
         $this->call(BookmarkDatabaseSeeder::class);
+        $this->call(BannerDatabaseSeeder::class);
     }
 }

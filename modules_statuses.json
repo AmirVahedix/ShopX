@@ -12,5 +12,6 @@
     "Article": true,
     "Slider": true,
     "Bookmark": true,
-    "Auth": true
+    "Auth": true,
+    "Banner": true
 }
