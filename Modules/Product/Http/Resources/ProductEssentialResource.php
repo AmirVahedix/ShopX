@@ -15,6 +15,9 @@ class ProductEssentialResource extends JsonResource
             "slug" => $this->slug,
             "price" => $this->price,
             "old_price" => $this->old_price,
+            "thumbnail" => count($this->getMedia('gallery'))
+                ? $this->getMedia('gallery')[0]->original_url
+                : null
         ];
     }
 }

@@ -4,6 +4,7 @@ namespace Modules\Category\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Modules\Product\Http\Resources\ProductEssentialResource;
 use Modules\Product\Http\Resources\ProductResource;
 
 class CategoryProductResource extends JsonResource
@@ -13,7 +14,8 @@ class CategoryProductResource extends JsonResource
         return [
             'title' => $this->title,
             'slug' => $this->slug,
-            'products' => ProductResource::collection($this->products)
+            'children' => CategoryResource::collection($this->children),
+            'products' => ProductEssentialResource::collection($this->products)
         ];
     }
 }
