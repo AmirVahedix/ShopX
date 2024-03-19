@@ -49,7 +49,10 @@ class CategoryResource extends Resource
             ])
             ->filters([
                 Tables\Filters\Filter::make('parents_only')
-                    ->query(fn (Builder $query): Builder => $query->whereNull('parent_id'))
+                    ->query(fn (Builder $query): Builder => $query->whereNull('parent_id')),
+                Tables\Filters\SelectFilter::make('parent_id')
+                    ->options(Category::query()->whereNull('parent_id')->pluck('title', 'id'))
+                    ->label('Parent')
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
