@@ -23,7 +23,13 @@ class ProductCommentResource extends JsonResource
             "attributes" => AttributeResource::collection($this->attributes),
             "variants" => VariantResource::collection($this->variants),
             "comments" => CommentResource::collection($this->comments()->approved()->get()),
-            "brand" => BrandResource::make($this->brand)
+            "brand" => BrandResource::make($this->brand),
+            "gallery" => $this->getMedia('gallery')
+                ->sortBy('created_at')
+                ->pluck('original_url'),
+            "thumbnail" => count($this->getMedia('thumbnail'))
+                ? $this->getMedia('thumbnail')[0]->original_url
+                : null
         ];
     }
 }
