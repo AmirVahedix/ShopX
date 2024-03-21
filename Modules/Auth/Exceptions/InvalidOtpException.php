@@ -6,6 +6,6 @@ use Exception;
 
 class InvalidOtpException extends Exception
 {
-    protected $message = 'invalid otp';
+    protected $message = 'کد تایید نامعتبر است.';
     protected $code = 403;
 }

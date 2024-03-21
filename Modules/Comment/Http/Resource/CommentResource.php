@@ -14,6 +14,8 @@ class CommentResource extends JsonResource
             "rating" => $this->rating,
             "upvote" => $this->upvote,
             "downvote" => $this->downvote,
+            "name" => $this->client->name,
+            "created_at" => jdate($this->created_at)->format('Y F d')
         ];
     }
 }

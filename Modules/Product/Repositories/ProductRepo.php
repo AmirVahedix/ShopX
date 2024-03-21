@@ -39,4 +39,15 @@ class ProductRepo
 
         return $product;
     }
+
+    public static function getRelatedProducts(string $slug)
+    {
+        $product = self::findBySlug($slug);
+
+        if (count($product->categories)) {
+            return $product->categories[0]->products()->inRandomOrder()->limit(4)->get();
+        } else {
+            return Product::query()->inRandomOrder()->limit(4)->get();
+        }
+    }
 }

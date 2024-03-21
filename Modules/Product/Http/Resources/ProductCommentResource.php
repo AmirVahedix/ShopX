@@ -7,6 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Modules\Attribute\Http\Resources\AttributeResource;
 use Modules\Brand\Http\Resources\BrandResource;
 use Modules\Comment\Http\Resource\CommentResource;
+use Modules\Product\Repositories\ProductRepo;
 use Modules\Variant\Http\Resources\VariantResource;
 
 class ProductCommentResource extends JsonResource
@@ -29,7 +30,10 @@ class ProductCommentResource extends JsonResource
                 ->pluck('original_url'),
             "thumbnail" => count($this->getMedia('thumbnail'))
                 ? $this->getMedia('thumbnail')[0]->original_url
-                : null
+                : null,
+            "related_products" => ProductEssentialResource::collection(
+                ProductRepo::getRelatedProducts($this->slug)
+            )
         ];
     }
 }
