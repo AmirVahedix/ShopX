@@ -8,7 +8,9 @@ use Modules\Address\Actions\AddressDeleteAction;
 use Modules\Address\Actions\AddressIndexAction;
 use Modules\Address\Actions\AddressSetAsDefaultAction;
 use Modules\Address\Actions\AddressShowAction;
+use Modules\Address\Actions\AddressStoreAction;
 use Modules\Address\Actions\AddressUpdateAction;
+use Modules\Address\Http\Requests\AddressStoreRequest;
 use Modules\Address\Http\Requests\AddressUpdateRequest;
 use Modules\Address\Http\Resource\AddressResource;
 use Modules\Address\Models\Address;
@@ -16,6 +18,11 @@ use Modules\Address\Models\Address;
 class AddressController extends Controller
 {
     public function index(AddressIndexAction $action)
+    {
+        return $this->executeApiAction($action);
+    }
+
+    public function store(AddressStoreRequest $request, AddressStoreAction $action)
     {
         return $this->executeApiAction($action);
     }

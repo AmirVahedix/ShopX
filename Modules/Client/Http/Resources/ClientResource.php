@@ -18,6 +18,7 @@ class ClientResource extends JsonResource
             'is_email_verified' => !!$this->email_verified_at,
             'ssn' => $this->ssn,
             'birth_date' => $this->birth_date,
+            'joined_at' => jdate($this->created_at)->ago(),
             'addresses' => AddressResource::collection($this->addresses)
         ];
     }
