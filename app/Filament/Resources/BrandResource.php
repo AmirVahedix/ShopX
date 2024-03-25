@@ -22,18 +22,27 @@ class BrandResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 
+    protected static ?string $label = "برند";
+
+    protected static ?string $pluralLabel = "برند ها";
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('title'),
-                SpatieMediaLibraryFileUpload::make('logo'),
+                TextInput::make('title')
+                    ->translateLabel(),
+                SpatieMediaLibraryFileUpload::make('logo')
+                    ->translateLabel(),
                 RichEditor::make('description')
-                    ->columnSpan(2),
+                    ->columnSpan(2)
+                    ->translateLabel(),
                 Forms\Components\Checkbox::make('is_featuring')
-                    ->label('Featuring'),
+                    ->label('Featuring')
+                    ->translateLabel(),
                 Textinput::make('order')
                     ->numeric()
+                    ->translateLabel()
             ]);
     }
 
@@ -41,13 +50,17 @@ class BrandResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\SpatieMediaLibraryImageColumn::make(''),
-                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('logo')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('title')
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('products_count')
-                    ->counts('products'),
+                    ->counts('products')
+                    ->translateLabel(),
                 Tables\Columns\IconColumn::make('is_featuring')
                     ->boolean()
-                    ->label('Featuring'),
+                    ->label('Featuring')
+                    ->translateLabel(),
             ])
             ->filters([
                 //
