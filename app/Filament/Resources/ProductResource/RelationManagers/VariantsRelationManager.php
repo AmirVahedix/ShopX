@@ -14,22 +14,32 @@ class VariantsRelationManager extends RelationManager
 {
     protected static string $relationship = 'variants';
 
+    protected static ?string $title = "رنگ، گارانتی، انبار";
+
+    protected static ?string $label = "";
+
     public function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\ColorPicker::make('color_hash')
-                    ->label('Color'),
-                Forms\Components\TextInput::make('color_name'),
-                Forms\Components\TextInput::make('warranty'),
+                    ->label('Color')
+                    ->translateLabel(),
+                Forms\Components\TextInput::make('color_name')
+                    ->translateLabel(),
+                Forms\Components\TextInput::make('warranty')
+                    ->translateLabel(),
                 Forms\Components\TextInput::make('price')
                     ->required()
-                    ->numeric(),
+                    ->numeric()
+                    ->translateLabel(),
                 Forms\Components\TextInput::make('old_price')
-                    ->numeric(),
+                    ->numeric()
+                    ->translateLabel(),
                 Forms\Components\TextInput::make('stock')
                     ->required()
                     ->numeric()
+                    ->translateLabel()
             ]);
     }
 
@@ -39,12 +49,18 @@ class VariantsRelationManager extends RelationManager
             ->recordTitleAttribute('id')
             ->columns([
                 Tables\Columns\ColorColumn::make('color_hash')
-                    ->label('Color'),
-                Tables\Columns\TextColumn::make('color_name'),
-                Tables\Columns\TextColumn::make('warranty'),
-                Tables\Columns\TextColumn::make('price'),
-                Tables\Columns\TextColumn::make('old_price'),
-                Tables\Columns\TextColumn::make('stock'),
+                    ->label('Color')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('color_name')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('warranty')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('price')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('old_price')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('stock')
+                    ->translateLabel(),
             ])
             ->filters([
                 //
