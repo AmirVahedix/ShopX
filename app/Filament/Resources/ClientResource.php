@@ -21,23 +21,32 @@ class ClientResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
+    protected static ?string $label = "مشتری";
+
+    protected static ?string $pluralLabel = "مشتریان";
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('name')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(255)
+                    ->translateLabel(),
                 TextInput::make('phone')
                     ->required()
-                    ->tel(),
+                    ->tel()
+                    ->translateLabel(),
                 DatePicker::make('birth_date')
-                    ->nullable(),
+                    ->nullable()
+                    ->translateLabel(),
                 TextInput::make('ssn')
                     ->nullable()
-                    ->label('Social Security Number'),
+                    ->label('Social Security Number')
+                    ->translateLabel(),
                 Forms\Components\Hidden::make('phone_verified_at')
-                    ->default(now()),
+                    ->default(now())
+                    ->translateLabel(),
             ]);
     }
 
@@ -46,11 +55,14 @@ class ClientResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('phone')
-                    ->searchable(),
+                    ->searchable()
+                    ->translateLabel(),
                 Tables\Columns\BooleanColumn::make('phone_verified_at')
                     ->label('Is Verified')
+                    ->translateLabel()
             ])
             ->filters([
                 //

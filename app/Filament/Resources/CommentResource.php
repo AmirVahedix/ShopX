@@ -21,6 +21,10 @@ class CommentResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-oval-left-ellipsis';
 
+    protected static ?string $label = "نظر";
+
+    protected static ?string $pluralLabel = "نظرات";
+
     public static function form(Form $form): Form
     {
         return $form
@@ -28,6 +32,7 @@ class CommentResource extends Resource
                 Forms\Components\Textarea::make('text')
                     ->rows(5)
                     ->label('Comment')
+                    ->translateLabel()
             ]);
     }
 
@@ -36,24 +41,29 @@ class CommentResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('client.name')
-                    ->label('Client'),
+                    ->label('Client')
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('product.title')
-                    ->label('Product'),
+                    ->label('Product')
+                    ->translateLabel(),
                 Tables\Columns\IconColumn::make('approved_at')
                     ->boolean()
                     ->default(0)
-                    ->label('Is Approved'),
+                    ->label('Is Approved')
+                    ->translateLabel(),
             ])
             ->filters([
                 Tables\Filters\Filter::make('not_approved')
                     ->query(fn (Builder $query): Builder => $query->whereNull('approved_at'))
+                    ->translateLabel()
             ])
             ->actions([
                 Action::make('approve')
                     ->action(fn (Model $record) => $record->markAsApproved())
                     ->visible(fn (Model $record) => !$record->approved_at)
                     ->color('success')
-                    ->icon('heroicon-o-check'),
+                    ->icon('heroicon-o-check')
+                    ->translateLabel(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
@@ -77,5 +87,10 @@ class CommentResource extends Resource
             'create' => Pages\CreateComment::route('/create'),
             'edit' => Pages\EditComment::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 }

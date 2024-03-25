@@ -21,6 +21,12 @@ class AddressesRelationManager extends RelationManager
 {
     protected static string $relationship = 'addresses';
 
+    protected static ?string $label = "آدرس";
+
+    protected static ?string $pluralLabel = "آدرس ها";
+
+    protected static ?string $modelLabel = "آدرس";
+
     public function form(Form $form): Form
     {
         return $form
@@ -29,18 +35,22 @@ class AddressesRelationManager extends RelationManager
                     ->options(Zone::all()->pluck('name', 'id'))
                     ->required()
                     ->label('Zone')
-                    ->live(),
+                    ->live()
+                    ->translateLabel(),
                 Forms\Components\Select::make('estate_id')
                     ->options(fn (Get $get): Collection => Estate::query()
                         ->where('zone_id', $get('zone_id'))
                         ->pluck('name', 'id'))
                     ->label('Estate')
-                    ->required(),
+                    ->required()
+                    ->translateLabel(),
                 Forms\Components\Textarea::make('address')
                     ->rows(5)
-                    ->required(),
+                    ->required()
+                    ->translateLabel(),
                 Forms\Components\TextInput::make('postal_code')
                     ->required()
+                    ->translateLabel()
             ]);
     }
 
@@ -50,11 +60,15 @@ class AddressesRelationManager extends RelationManager
             ->recordTitleAttribute('id')
             ->columns([
                 Tables\Columns\TextColumn::make('zone.name')
-                    ->label('Zone'),
+                    ->label('Zone')
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('estate.name')
-                    ->label('Estate'),
-                Tables\Columns\TextColumn::make('address'),
-                Tables\Columns\TextColumn::make('postal_code'),
+                    ->label('Estate')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('address')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('postal_code')
+                    ->translateLabel(),
             ])
             ->filters([
                 //
