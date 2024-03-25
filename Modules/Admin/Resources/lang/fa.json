@@ -47,5 +47,18 @@
     "Color": "رنگ",
     "Warranty": "گارانتی",
     "Fee": "قیمت واحد",
-    "Quantity": "تعداد"
+    "Quantity": "تعداد",
+    "Total Stock": "موجودی انبار",
+    "Special Offer": "پیشنهاد ویژه",
+    "Best Seller": "پرفروش ترین",
+    "Model": "مدل",
+    "Categories": "دسته بندی ها",
+    "Gallery": "گالری",
+    "Brand": "برند",
+    "Href": "لینک",
+    "Value": "توضیحات",
+    "Color name": "نام رنگ",
+    "Price": "قیمت",
+    "Old price": "قیمت قدیمی",
+    "Stock": "موجودی"
 }

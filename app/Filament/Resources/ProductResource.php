@@ -21,33 +21,47 @@ class ProductResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $label = "محصول";
+
+    protected static ?string $pluralLabel = "محصولات";
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title'),
+                Forms\Components\TextInput::make('title')
+                    ->translateLabel(),
                 Forms\Components\TextInput::make('slug')
-                    ->unique('products', 'slug', ignoreRecord: true),
-                Forms\Components\TextInput::make('model'),
+                    ->unique('products', 'slug', ignoreRecord: true)
+                    ->translateLabel(),
+                Forms\Components\TextInput::make('model')
+                    ->translateLabel(),
                 Forms\Components\Select::make('categories')
                     ->relationship('categories', 'title')
                     ->multiple()
-                    ->searchable(),
+                    ->searchable()
+                    ->translateLabel(),
                 Forms\Components\Checkbox::make('is_special_offer')
-                    ->label('Special Offer'),
+                    ->label('Special Offer')
+                    ->translateLabel(),
                 Forms\Components\Checkbox::make('is_best_seller')
-                    ->label('Best Seller'),
+                    ->label('Best Seller')
+                    ->translateLabel(),
                 Forms\Components\Select::make('brand_id')
                     ->options(Brand::query()->pluck('title', 'id'))
                     ->searchable()
-                    ->label('Brand'),
+                    ->label('Brand')
+                    ->translateLabel(),
                 Forms\Components\RichEditor::make('description')
-                    ->columnSpan(2),
+                    ->columnSpan(2)
+                    ->translateLabel(),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('thumbnail')
-                    ->collection('thumbnail'),
+                    ->collection('thumbnail')
+                    ->translateLabel(),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('gallery')
                     ->collection('gallery')
-                    ->multiple(),
+                    ->multiple()
+                    ->translateLabel(),
             ]);
     }
 
@@ -56,18 +70,23 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\SpatieMediaLibraryImageColumn::make('thumbnail')
-                    ->collection('thumbnail'),
-                Tables\Columns\TextColumn::make('title'),
+                    ->collection('thumbnail')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('title')
+                    ->translateLabel(),
 //                Tables\Columns\TextColumn::make('brand.title'),
                 Tables\Columns\TextColumn::make('variants_sum_stock')
                     ->sum('variants', 'stock')
-                    ->label('Total Stock'),
+                    ->label('Total Stock')
+                    ->translateLabel(),
                 Tables\Columns\IconColumn::make('is_special_offer')
                     ->boolean()
-                    ->label('Special Offer'),
+                    ->label('Special Offer')
+                    ->translateLabel(),
                 Tables\Columns\IconColumn::make('is_best_seller')
                     ->boolean()
-                    ->label('Best Seller'),
+                    ->label('Best Seller')
+                    ->translateLabel(),
             ])
             ->defaultSort('created_at')
             ->filters([

@@ -19,14 +19,22 @@ class SliderResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
 
+    protected static ?string $label = "اسلایدر";
+
+    protected static ?string $pluralLabel = "اسلایدر ها";
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title'),
-                Forms\Components\TextInput::make('href')->label('Link'),
-                Forms\Components\SpatieMediaLibraryFileUpload::make('image'),
+                Forms\Components\TextInput::make('title')
+                    ->translateLabel(),
+                Forms\Components\TextInput::make('href')->label('Link')
+                    ->translateLabel(),
+                Forms\Components\SpatieMediaLibraryFileUpload::make('image')
+                    ->translateLabel(),
                 Forms\Components\TextInput::make('order')->numeric()
+                    ->translateLabel(),
             ]);
     }
 
@@ -34,9 +42,10 @@ class SliderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\SpatieMediaLibraryImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('href'),
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('image')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('title')
+                    ->translateLabel(),
             ])
             ->filters([
                 //
