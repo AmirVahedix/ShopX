@@ -36,6 +36,16 @@
     "Approve": "تایید",
     "Comment": "نظر",
     "Not approved": "تایید نشده",
-    "": "",
-    "": ""
+    "Sku": "شماره سفارش",
+    "Status": "وضعیت",
+    "Paid at": "تاریخ پرداخت",
+    "Shipping price": "هزینه ارسال",
+    "Shipping method": "نحوه ارسال",
+    "Order Date": "تاریخ سفارش",
+    "Pure price": "قیمت محصولات",
+    "Total price": "هزینه کل",
+    "Color": "رنگ",
+    "Warranty": "گارانتی",
+    "Fee": "قیمت واحد",
+    "Quantity": "تعداد"
 }

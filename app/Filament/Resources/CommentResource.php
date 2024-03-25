@@ -64,7 +64,6 @@ class CommentResource extends Resource
                     ->color('success')
                     ->icon('heroicon-o-check')
                     ->translateLabel(),
-                Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

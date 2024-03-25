@@ -14,6 +14,8 @@ class AddressRelationManager extends RelationManager
 {
     protected static string $relationship = 'address';
 
+    protected static ?string $title = "آدرس";
+
     public function form(Form $form): Form
     {
         return $form
@@ -29,10 +31,14 @@ class AddressRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('id')
             ->columns([
-                Tables\Columns\TextColumn::make('zone.name'),
-                Tables\Columns\TextColumn::make('estate.name'),
-                Tables\Columns\TextColumn::make('address'),
-                Tables\Columns\TextColumn::make('postal_code'),
+                Tables\Columns\TextColumn::make('zone.name')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('estate.name')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('address')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('postal_code')
+                    ->translateLabel(),
             ])
             ->filters([])
             ->headerActions([])

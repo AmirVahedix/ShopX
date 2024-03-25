@@ -21,28 +21,46 @@ class OrderResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-shopping-cart';
 
+    protected static ?string $label = "سفارش";
+
+    protected static ?string $pluralLabel = "سفارشات";
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('sku')
-                    ->readOnly(),
+                    ->readOnly()
+                    ->translateLabel(),
                 Forms\Components\Select::make('status')
                     ->options([
-                        Order::STATUS_CANCELED => Order::STATUS_CANCELED,
-                        Order::STATUS_WAITING => Order::STATUS_WAITING,
-                        Order::STATUS_PENDING => Order::STATUS_PENDING,
-                        Order::STATUS_SHIPPING => Order::STATUS_SHIPPING,
-                        Order::STATUS_DELIVERED => Order::STATUS_DELIVERED
-                    ]),
+                        Order::STATUS_CANCELED => __(Order::STATUS_CANCELED),
+                        Order::STATUS_WAITING => __(Order::STATUS_WAITING),
+                        Order::STATUS_PENDING => __(Order::STATUS_PENDING),
+                        Order::STATUS_SHIPPING => __(Order::STATUS_SHIPPING),
+                        Order::STATUS_DELIVERED => __(Order::STATUS_DELIVERED)
+                    ])
+                    ->translateLabel(),
                 Forms\Components\TextInput::make('shipping_method')
-                    ->readOnly(),
+                    ->readOnly()
+                    ->translateLabel(),
                 Forms\Components\TextInput::make('shipping_price')
-                    ->readOnly(),
+                    ->readOnly()
+                    ->translateLabel()
+                    ->formatStateUsing(fn (string $state): string => number_format($state). " تومان"),
+                Forms\Components\TextInput::make('pure_price')
+                    ->readOnly()
+                    ->translateLabel()
+                    ->formatStateUsing(fn (string $state): string => number_format($state). " تومان"),
+                Forms\Components\TextInput::make('total_price')
+                    ->readOnly()
+                    ->translateLabel()
+                    ->formatStateUsing(fn (string $state): string => number_format($state). " تومان"),
                 Forms\Components\TextInput::make('created_at')
                     ->readOnly()
                     ->formatStateUsing(fn (string $state): string => jdate($state)->format('Y/m/d'))
                     ->label('Order Date')
+                    ->translateLabel()
             ]);
     }
 
@@ -50,8 +68,11 @@ class OrderResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('sku'),
-                Tables\Columns\TextColumn::make('client.name'),
+                Tables\Columns\TextColumn::make('sku')
+                    ->searchable()
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('client.name')
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
@@ -60,30 +81,23 @@ class OrderResource extends Resource
                         Order::STATUS_PENDING => 'info',
                         Order::STATUS_SHIPPING => 'gray',
                         Order::STATUS_DELIVERED => 'success'
-                    }),
+                    })
+                    ->formatStateUsing(fn (string $state): string => __($state))
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('paid_at')
                     ->formatStateUsing(fn (string $state): string => jdate($state)->format('d F'))
+                    ->translateLabel()
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
                     ->options([
-                        Order::STATUS_CANCELED => Order::STATUS_CANCELED,
-                        Order::STATUS_WAITING => Order::STATUS_WAITING,
-                        Order::STATUS_PENDING => Order::STATUS_PENDING,
-                        Order::STATUS_SHIPPING => Order::STATUS_SHIPPING,
-                        Order::STATUS_DELIVERED => Order::STATUS_DELIVERED
-                    ]),
-                Tables\Filters\Filter::make('sku')
-                    ->form([
-                        Forms\Components\TextInput::make('sku')->numeric()
+                        Order::STATUS_CANCELED => __(Order::STATUS_CANCELED),
+                        Order::STATUS_WAITING => __(Order::STATUS_WAITING),
+                        Order::STATUS_PENDING => __(Order::STATUS_PENDING),
+                        Order::STATUS_SHIPPING => __(Order::STATUS_SHIPPING),
+                        Order::STATUS_DELIVERED => __(Order::STATUS_DELIVERED)
                     ])
-                    ->query(function (Builder $query, array $data): Builder {
-                        return $query
-                            ->when(
-                                $data['sku'],
-                                fn (Builder $query, $sku): Builder => $query->where('sku', $sku),
-                            );
-                    })
+                    ->translateLabel(),
             ])
             ->actions([])
             ->bulkActions([])

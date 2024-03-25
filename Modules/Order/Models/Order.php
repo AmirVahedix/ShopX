@@ -37,7 +37,8 @@ class Order extends Model
     ];
 
     protected $appends = [
-        'pure_price'
+        'pure_price',
+        'total_price'
     ];
 
     protected static function newFactory()

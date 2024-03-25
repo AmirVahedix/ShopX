@@ -15,6 +15,8 @@ class ItemsRelationManager extends RelationManager
 {
     protected static string $relationship = 'items';
 
+    protected static ?string $title = "محصولات";
+
     public function form(Form $form): Form
     {
         return $form
@@ -30,16 +32,21 @@ class ItemsRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('id')
             ->columns([
-                Tables\Columns\TextColumn::make('product.title'),
+                Tables\Columns\TextColumn::make('product.title')
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('variant.color_name')
-                    ->label('Color'),
+                    ->label('Color')
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('variant.warranty')
-                    ->label('Warranty'),
+                    ->label('Warranty')
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('variant.fee')
                     ->money()
-                    ->label('Fee'),
+                    ->label('Fee')
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('qty')
-                    ->label('Quantity'),
+                    ->label('Quantity')
+                    ->translateLabel(),
 
             ])
             ->filters([
