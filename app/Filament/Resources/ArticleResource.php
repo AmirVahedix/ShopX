@@ -19,24 +19,33 @@ class ArticleResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
 
+    protected static ?string $label = "مطلب";
+    protected static ?string $pluralLabel = "مطالب";
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title'),
-                Forms\Components\TextInput::make('slug'),
+                Forms\Components\TextInput::make('title')
+                    ->translateLabel(),
+                Forms\Components\TextInput::make('slug')
+                    ->translateLabel(),
                 Forms\Components\RichEditor::make('body')
-                    ->columnSpan(2),
-                Forms\Components\TextInput::make('meta_title'),
+                    ->columnSpan(2)
+                    ->translateLabel(),
+                Forms\Components\TextInput::make('meta_title')
+                    ->translateLabel(),
                 Forms\Components\Textarea::make('meta_description')
-                    ->rows(3),
+                    ->rows(3)
+                    ->translateLabel(),
                 Forms\Components\DatePicker::make('published_at')
                     ->default(now())
-                    ->label('Publish Date'),
-                Forms\Components\SpatieMediaLibraryFileUpload::make('thumbnail'),
+                    ->label(__('Publish Date')),
+                Forms\Components\SpatieMediaLibraryFileUpload::make('thumbnail')
+                    ->translateLabel(),
                 Forms\Components\TextInput::make('reading_time')
                     ->numeric()
-                    ->label('Reading Time (Minutes)'),
+                    ->label(__('Reading Time (Minutes)')),
             ]);
     }
 
@@ -44,11 +53,13 @@ class ArticleResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('views'),
+                Tables\Columns\TextColumn::make('title')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('views')
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('published_at')
                     ->formatStateUsing(fn (string $state): string => jdate($state)->format('Y/m/d'))
-                    ->label('Publish Date')
+                    ->label(__('Publish Date'))
             ])
             ->filters([
 
@@ -79,4 +90,9 @@ class ArticleResource extends Resource
             'edit' => Pages\EditArticle::route('/{record}/edit'),
         ];
     }
+
+//    public static function getNavigationLabel(): string
+//    {
+//        return 'مقالات';
+//    }
 }
