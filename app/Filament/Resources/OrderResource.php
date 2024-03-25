@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Filters\OrderSkuFilter;
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\RelationManagers;
 use Filament\Forms;
@@ -67,7 +68,18 @@ class OrderResource extends Resource
                         Order::STATUS_PENDING => Order::STATUS_PENDING,
                         Order::STATUS_SHIPPING => Order::STATUS_SHIPPING,
                         Order::STATUS_DELIVERED => Order::STATUS_DELIVERED
+                    ]),
+                Tables\Filters\Filter::make('sku')
+                    ->form([
+                        Forms\Components\TextInput::make('sku')->numeric()
                     ])
+                    ->query(function (Builder $query, array $data): Builder {
+                        return $query
+                            ->when(
+                                $data['sku'],
+                                fn (Builder $query, $sku): Builder => $query->where('sku', $sku),
+                            );
+                    })
             ])
             ->actions([])
             ->bulkActions([])

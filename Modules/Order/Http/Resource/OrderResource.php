@@ -15,9 +15,9 @@ class OrderResource extends JsonResource
             'sku' => $this->sku,
             'address' => AddressResource::make($this->address),
             'items' => OrderItemResource::collection($this->items),
-            'status' => $this->status,
+            'status' => __($this->status),
             'id_paid' => !!$this->paid_at,
-            'created_at' => $this->created_at
+            'created_at' => jdate($this->created_at)->format('m F Y')
         ];
     }
 }
