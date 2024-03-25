@@ -35,6 +35,10 @@ class OrderResource extends Resource
                         Order::STATUS_SHIPPING => Order::STATUS_SHIPPING,
                         Order::STATUS_DELIVERED => Order::STATUS_DELIVERED
                     ]),
+                Forms\Components\TextInput::make('shipping_method')
+                    ->readOnly(),
+                Forms\Components\TextInput::make('shipping_price')
+                    ->readOnly(),
                 Forms\Components\TextInput::make('created_at')
                     ->readOnly()
                     ->formatStateUsing(fn (string $state): string => jdate($state)->format('Y/m/d'))

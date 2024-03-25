@@ -16,7 +16,12 @@ class VariantFactory extends Factory
             "product_id" => Product::query()->inRandomOrder()->first(),
             "color_name" => $this->faker->colorName,
             "color_hash" => $this->faker->hexColor,
-            "warranty" => $this->faker->sentence,
+            "warranty" => $this->faker->randomElement([
+                'گارانتی اصالت و سلامت فیزیکی',
+                '۱۲ ماهه آروند',
+                '۱۸ ماهه شرکتی',
+                null
+            ]),
             "price" => $this->faker->numberBetween(2000000, 200000000),
             "old_price" => $this->faker->randomElement([null, $this->faker->numberBetween(2000000, 200000000)]),
             "stock" => $this->faker->numberBetween(0, 10),

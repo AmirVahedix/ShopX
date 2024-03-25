@@ -17,6 +17,12 @@ class OrderFactory extends Factory
             "sku" => $this->faker->numberBetween(100000, 999999),
             "client_id" => Client::query()->inRandomOrder()->first(),
             "address_id" => Address::query()->inRandomOrder()->first(),
+            "shipping_price" => $this->faker->numberBetween(10000, 100000),
+            "shipping_method" => $this->faker->randomElement([
+                "پست پیشتاز",
+                "تیپاکس",
+                "باربری"
+            ]),
             "status" => $this->faker->randomElement(Order::statuses),
             "paid_at" => $this->faker->randomElement([null, now()]),
         ];

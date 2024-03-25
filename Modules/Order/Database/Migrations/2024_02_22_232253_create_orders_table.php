@@ -14,6 +14,8 @@ return new class extends Migration
             $table->string('sku')->unique();
             $table->foreignId('client_id')->constrained();
             $table->foreignId('address_id')->constrained();
+            $table->string('shipping_price')->default(0);
+            $table->string('shipping_method')->nullable();
             $table->enum('status', Order::statuses)->default(Order::STATUS_WAITING);
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();

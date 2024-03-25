@@ -2,6 +2,7 @@
 
 namespace Modules\Order\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Address\Models\Address;
@@ -29,8 +30,14 @@ class Order extends Model
         "sku",
         "client_id",
         "address_id",
+        "shipping_price",
+        "shipping_method",
         "status",
         "paid_at",
+    ];
+
+    protected $appends = [
+        'pure_price'
     ];
 
     protected static function newFactory()
@@ -51,5 +58,25 @@ class Order extends Model
     public function items()
     {
         return $this->hasMany(OrderItem::class, 'order_id');
+    }
+
+    public function purePrice(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                $sum = 0;
+                foreach ($this->items as $item) {
+                    $sum += $item->fee * $item->qty;
+                }
+                return $sum;
+            }
+        );
+    }
+
+    public function totalPrice(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->pure_price + $this->shipping_price
+        );
     }
 }
