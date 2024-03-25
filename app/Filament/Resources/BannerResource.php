@@ -19,20 +19,31 @@ class BannerResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
 
+    protected static ?string $label = "بنر";
+
+    protected static ?string $pluralLabel = "بنر ها";
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')->required(),
-                Forms\Components\TextInput::make('link')->required(),
-                Forms\Components\SpatieMediaLibraryFileUpload::make('image'),
+                Forms\Components\TextInput::make('title')
+                    ->required()
+                    ->translateLabel(),
+                Forms\Components\TextInput::make('link')
+                    ->required()
+                    ->translateLabel(),
+                Forms\Components\SpatieMediaLibraryFileUpload::make('image')
+                    ->translateLabel(),
                 Forms\Components\Select::make('type')
                     ->options([
-                        Banner::TYPE_FULL_WIDTH => Banner::TYPE_FULL_WIDTH,
-                        Banner::TYPE_HALF_WIDTH => Banner::TYPE_HALF_WIDTH
-                    ]),
+                        Banner::TYPE_FULL_WIDTH => __(Banner::TYPE_FULL_WIDTH),
+                        Banner::TYPE_HALF_WIDTH => __(Banner::TYPE_HALF_WIDTH)
+                    ])
+                    ->translateLabel(),
                 Forms\Components\TextInput::make('order')
                     ->numeric()
+                    ->translateLabel()
             ]);
     }
 
@@ -40,9 +51,13 @@ class BannerResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\SpatieMediaLibraryImageColumn::make('image'),
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('type'),
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('image')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('title')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('type')
+                    ->translateLabel()
+                    ->formatStateUsing(fn (string $state): string => __($state))
             ])
             ->filters([
                 //

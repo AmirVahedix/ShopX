@@ -7,5 +7,11 @@
     "Body": "متن اصلی",
     "Meta title": "عنوان سئو",
     "Meta description": "توضیحات سئو",
-    "Thumbnail": "تصویر"
+    "Thumbnail": "تصویر",
+    "Image": "تصویر",
+    "Type": "نوع",
+    "Link": "لینک",
+    "Order": "ردیف",
+    "Full Width": "تمام عرض",
+    "Half Width": "نصف عرض"
 }
