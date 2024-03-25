@@ -20,20 +20,28 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-squares-2x2';
 
+    protected static ?string $label = "دسته بندی";
+
+    protected static ?string $pluralLabel = "دسته بندی ها";
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('title')
-                    ->required(),
+                    ->required()
+                    ->translateLabel(),
                 Forms\Components\TextInput::make('slug')
                     ->required()
-                    ->unique(ignoreRecord: true),
+                    ->unique(ignoreRecord: true)
+                    ->translateLabel(),
                 Forms\Components\Select::make('parent_id')
                     ->relationship('parent', 'title')
                     ->searchable()
-                    ->nullable(),
-                Forms\Components\SpatieMediaLibraryFileUpload::make('thumbnail'),
+                    ->nullable()
+                    ->translateLabel(),
+                Forms\Components\SpatieMediaLibraryFileUpload::make('thumbnail')
+                    ->translateLabel(),
             ]);
     }
 
@@ -41,18 +49,24 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\SpatieMediaLibraryImageColumn::make('thumbnail'),
-                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\SpatieMediaLibraryImageColumn::make('thumbnail')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('title')
+                    ->translateLabel(),
                 Tables\Columns\TextColumn::make('products_count')
-                    ->counts('products'),
-                Tables\Columns\TextColumn::make('parent.title'),
+                    ->counts('products')
+                    ->translateLabel(),
+                Tables\Columns\TextColumn::make('parent.title')
+                    ->translateLabel(),
             ])
             ->filters([
                 Tables\Filters\Filter::make('parents_only')
-                    ->query(fn (Builder $query): Builder => $query->whereNull('parent_id')),
+                    ->query(fn (Builder $query): Builder => $query->whereNull('parent_id'))
+                    ->translateLabel(),
                 Tables\Filters\SelectFilter::make('parent_id')
                     ->options(Category::query()->whereNull('parent_id')->pluck('title', 'id'))
                     ->label('Parent')
+                    ->translateLabel()
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

@@ -17,5 +17,7 @@
     "Products count": "تعداد محصولات",
     "Featuring": "نمایش در صفحه اصلی",
     "Logo": "لوگو",
-    "Description": "توضیحات"
+    "Description": "توضیحات",
+    "Parent": "دسته پدر",
+    "Parents only": "فقط دسته های پدر"
 }
